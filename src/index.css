@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+  --primary:#8A2BE2;
+  --primaryText: #ffffff;
+}
+button{
+  font-size: 14px;
+}
+input{
+  padding: 5px;
+}
+table {
+  border-collapse: collapse;
+}
+table,th,td{
+  border: 1px solid black;
+}
+
+button {
+  border: none;
+  color: blueviolet;
+  background-color: white;
+}
+

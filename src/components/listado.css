@@ -1,0 +1,134 @@
+.item-titulo{
+    display: flex;
+    width: 100%;
+}
+
+.item-buscador {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+  .item-tabla {
+    display: flex;
+    width: 100%;
+
+  }
+  .item-info {
+    width: 100%;
+
+    display: flex;
+}
+.contenedor {
+    /* display: flex; */
+    /* width: 100%; */
+    padding: 20px;
+
+
+  }
+
+  .listContainer{
+    width: 100%;
+    margin: 20px 0px 20px;
+  }
+  .tablaList{
+      width: 100%;
+  }
+
+  .contenedorPokemon{
+      width: 100%;
+      border: 1px solid gray;
+      padding: 20px;
+  }
+
+  .fila1{
+      display: flex;
+      justify-content: space-between;
+
+
+  }
+  .fila2{
+      justify-content: space-between;
+      display: flex;
+  }
+
+  .titlePokemon{
+      margin-bottom: 25px;
+  }
+  .namePokemon{
+      margin-bottom: 25px;
+  }
+  .buttonPokemon{
+    margin: 30px 0px 0px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+
+
+.primaryButton{
+    border: none;
+    padding: 10px;
+    color: var(--primaryText);
+    background-color: var(--primary);
+}
+
+.td{
+    border: 1px solid black;
+  }
+
+
+/* .rangeInput input[type="range" i] {
+    color: -internal-light-dark(blueviolet, white) 
+    
+  } */
+
+  /* input[type=range] {
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: blueviolet;
+    width: 200px;
+    padding: 0px;
+} */
+
+input[type="range"] {
+    margin: auto;
+    outline: none;
+    padding: 0;
+    width: 180px;
+    height: 10px;
+    background-color: #dedede;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, blueviolet), color-stop(100%, blueviolet));
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+  
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: blueviolet;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background .3s ease-in-out;
+  }
+  
+  input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    color: blueviolet;
+  }
+
+  .icon {
+    padding-left: 25px;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-size: 20px;
+  }
