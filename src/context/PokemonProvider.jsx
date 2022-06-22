@@ -1,4 +1,5 @@
-import React, { Component, useEffect, useState } from "react"
+import axios from "axios"
+import React, {useEffect, useState } from "react"
 
 const PokemonContext = React.createContext()
 
@@ -6,17 +7,9 @@ function PokemonProvider({ children }) {
   const [oculto, setOculto] = useState(true)
   const [search, setSearch] = useState("")
 
-  const [pokemons, setPokemons] = useState([{
-    name: "Ivysaur",
-    image: "https://2.bp.blogspot.com/-3d92ta4_JEc/TvmzTTgNBKI/AAAAAAAACJ4/GFC9bCwM5vQ/s1600/imagenes-jpg-712861.jpg",
-    attack: "65",
-    defense: "38"
-  }])
+  const [pokemons, setPokemons] = useState([])
 
   const [searchPokemons, setSearchPokemons] = useState([])
-  const addPokemon = (pokemon) => {
-    setPokemons([...pokemons, pokemon])
-  }
 
   useEffect(() => {
     setSearchPokemons(pokemons.filter(x => x.name.includes(search)))
@@ -27,18 +20,36 @@ function PokemonProvider({ children }) {
     setSearchPokemons([...pokemons])
   }, [pokemons]) //
 
+  useEffect(() => {
+    getPokemons()
+  }, [])
+
+  async function getPokemons() {
+    const response = await axios.get('https://bp-pokemons.herokuapp.com/?idAuthor=1');
+    setPokemons(response.data)
+  }
+
+  async function deletePokemon(id) {
+    const data = await axios.delete(`https://bp-pokemons.herokuapp.com/${id}`)
+  }
+
+  async function createPokemons(data) {
+    const createList = await axios.post('https://bp-pokemons.herokuapp.com/?idAuthor=1', data);
+    // setPokemons(createList.data)
+  }
+
   return (
     <PokemonContext.Provider value={{
-      hi: "hello",
-      hola: "holisss",
       pokemons,
       setPokemons,
-      addPokemon,
       oculto,
       setOculto,
       search,
       setSearch,
-      searchPokemons
+      searchPokemons,
+      deletePokemon,
+      getPokemons,
+      createPokemons
     }}
 
     >{children}</PokemonContext.Provider>

@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import usePokemon from '../hooks/usePokemon';
 
 function Listado() {
 
-    // const [listado, setListado] = useState([
-    //     {
-    //         nombre: "Ivysaur",
-    //         imagen: "https://2.bp.blogspot.com/-3d92ta4_JEc/TvmzTTgNBKI/AAAAAAAACJ4/GFC9bCwM5vQ/s1600/imagenes-jpg-712861.jpg",
-    //         ataque: "65",
-    //         defensa: "38"
-    //     }
-    // ])
+    const { searchPokemons, pokemons, setPokemons, deletePokemon, getPokemons } = usePokemon();
 
-    const { searchPokemons, pokemons, setPokemons } = usePokemon();
-
-    const handleDelete = (index) => {
-        const newArray = pokemons.filter((x, i) => i != index)
-        setPokemons(newArray)
+    const handleDelete = async (id) => {
+        await deletePokemon(id)
+        getPokemons()
     }
 
+    
     return (
 
         <div className='listContainer'>
@@ -43,7 +36,7 @@ function Listado() {
                             <td>
                                 <div>
                                     <button ><i className="fa fa-pencil-square-o" aria-hidden="true"></i> </button>
-                                    <button className='primaryIcon' onClick={() => handleDelete(index)} > <i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button className='primaryIcon' onClick={() => handleDelete(list.id)} > <i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </div>
                             </td>
                         </tr>

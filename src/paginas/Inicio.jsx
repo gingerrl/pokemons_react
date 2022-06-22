@@ -6,10 +6,11 @@ import '../components/listado.css'
 import usePokemon from '../hooks/usePokemon';
 function Inicio() {
 
-  const { oculto, setOculto } = usePokemon()
+  const { oculto, setOculto,createPokemons } = usePokemon()
 
   const handleNew = () => {
     setOculto(false)
+    createPokemons()
   }
   return (
     <div className='contenedor'>

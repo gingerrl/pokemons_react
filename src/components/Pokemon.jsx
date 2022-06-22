@@ -6,9 +6,12 @@ function Pokemon() {
         name: "",
         image: "",
         attack: 0,
-        defense: 0
+        defense: 0,
+        idAuthor: 1,
+        hp: 100,
+        type: "normal"
     })
-    const { addPokemon, setOculto } = usePokemon();
+    const { setOculto, createPokemons, getPokemons } = usePokemon();
 
 
     const handleName = (e) => {
@@ -26,12 +29,14 @@ function Pokemon() {
         setPokemon({ ...pokemon, defense: e })
     }
 
-    const handleSave = () => {
-        if (Object.values(pokemon).includes('')) {
+    const handleSave = async () => {
+        if (Object.values(pokemon).includes('') || Object.values(pokemon).includes(0)) {
             alert("Todos los campos son obligatorios")
             return null;
         } // si el objeto viene vacio va a poner comillas simples
-        addPokemon(pokemon)
+        // addPokemon(pokemon)
+        await createPokemons(pokemon)
+        getPokemons()
         setPokemon({ ...pokemon, name: "", image: "", attack: 0, defense: 0 })
         setOculto(true)
     }
