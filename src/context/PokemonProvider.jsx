@@ -11,7 +11,7 @@ function PokemonProvider({ children }) {
   const [searchPokemons, setSearchPokemons] = useState([])
 
   useEffect(() => {
-    setSearchPokemons(pokemons.filter(x => x.name.includes(search)))
+    setSearchPokemons(pokemons.filter(x => x.name.toUpperCase().includes(search.toUpperCase())))
   }, [search])
 
   useEffect(() => {
