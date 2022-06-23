@@ -1,72 +1,64 @@
 .item-titulo{
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .item-buscador {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 
   }
-  .item-tabla {
-    display: flex;
-    width: 100%;
+.item-tabla {
+  display: flex;
+  width: 100%;
 
-  }
-  .item-info {
-    width: 100%;
-
-    display: flex;
 }
+.item-info {
+  width: 100%;
+  display: flex;
+}
+
 .contenedor {
-    /* display: flex; */
-    /* width: 100%; */
-    padding: 20px;
-
-
-  }
-
-  .listContainer{
-    width: 100%;
-    margin: 20px 0px 20px;
-  }
-  .tablaList{
-      width: 100%;
-  }
-
-  .contenedorPokemon{
-      width: 100%;
-      border: 1px solid gray;
-      padding: 20px;
-  }
-
-  .fila1{
-      display: flex;
-      justify-content: space-between;
-
-
-  }
-  .fila2{
-      justify-content: space-between;
-      display: flex;
-  }
-
-  .titlePokemon{
-      margin-bottom: 25px;
-  }
-  .namePokemon{
-      margin-bottom: 25px;
-  }
-  .buttonPokemon{
-    margin: 30px 0px 0px;
-    display: flex;
-    gap: 5px;
-    justify-content: center;
+  padding: 20px;
 }
 
+.listContainer{
+  width: 100%;
+  margin: 20px 0px 20px;
+}
+.tablaList{
+  width: 100%;
+}
 
+.contenedorPokemon{
+  width: 100%;
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+.fila1{
+  display: flex;
+  justify-content: space-between;
+}
+.fila2{
+  justify-content: space-between;
+  display: flex;
+}
+
+.titlePokemon{
+  margin-bottom: 25px;
+}
+.namePokemon{
+  margin-bottom: 25px;
+}
+.buttonPokemon{
+  margin: 30px 0px 0px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
 
 .primaryButton{
     border: none;
@@ -79,104 +71,49 @@
     border: 1px solid black;
   }
 
-
-/* .rangeInput input[type="range" i] {
-    color: -internal-light-dark(blueviolet, white) 
-    
-  } */
-
-  /* input[type=range] {
-    height: 10px;
-    -webkit-appearance: none;
-    background-color: blueviolet;
-    width: 200px;
-    padding: 0px;
-} */
-
-/* input[type="range"] {
-    margin: auto;
-    outline: none;
-    padding: 0;
-    width: 180px;
-    height: 10px;
-    background-color: #dedede;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, blueviolet), color-stop(100%, blueviolet));
-    background-size: 50% 100%;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    cursor: pointer;
-    -webkit-appearance: none;
-  } */
-  
-  input[type=range].styled-slider {
-    height: 2.2em;
-    -webkit-appearance: none;
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+input[type='range'] {
+  overflow: hidden;
+  width: 100px;
+  height: 5px;
+  -webkit-appearance: none;
+  background-color: lightgray;
   }
   
-  /*progress support*/
-  input[type=range].styled-slider.slider-progress {
-    --range: calc(var(--max) - var(--min));
-    --ratio: calc((var(--value) - var(--min)) / var(--range));
-    --sx: calc(0.5 * 2em + var(--ratio) * (100% - 2em));
+input[type='range']::-webkit-slider-runnable-track {
+  height: 10px;
+  -webkit-appearance: none;
+  color: blueviolet;
+  margin-top: -1px;
   }
   
-  input[type=range].styled-slider:focus {
-    outline: none;
+input[type='range']::-webkit-slider-thumb {
+  width: 10px;
+  -webkit-appearance: none;
+  height: 100%;
+  cursor: ew-resize;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  box-shadow: -80px 0 0 80px blueviolet;
   }
-  input[type=range].styled-slider.slider-progress {
-    --range: calc(var(--max) - var(--min));
-    --ratio: calc((var(--value) - var(--min)) / var(--range));
-    --sx: calc(0.5 * 2em + var(--ratio) * (100% - 2em));
-  }
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: blueviolet ; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color: lightgray;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: blueviolet; 
+}
+input[type="range"]::-ms-fill-upper {  
+  background-color: lightgray;
+}
   
-  input[type=range].styled-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 2em;
-    height: 2em;
-    border-radius: 1em;
-    background: #007cf8;
-    border: none;
-    box-shadow: 0 0 2px black;
-    margin-top: calc(max((1em - 1px - 1px) * 0.5,0px) - 2em * 0.5);
-  }
-  
-  input[type=range].styled-slider::-webkit-slider-runnable-track {
-    height: 1em;
-    border: 1px solid #b2b2b2;
-    border-radius: 0.5em;
-    background: #efefef;
-    box-shadow: none;
-  }
-  
-  input[type=range].styled-slider::-webkit-slider-thumb:hover {
-    color: #0061c3;
-  }
-
-  
-  
-
-
-/* input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: blueviolet;
-    cursor: ew-resize;
-    box-shadow: 0 0 2px 0 #555;
-    transition: background .3s ease-in-out;
-  }
-  
-  input[type=range]::-webkit-slider-runnable-track  {
-    -webkit-appearance: none;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-    color: blueviolet;
-  } */
-
-  .icon {
-    padding-left: 25px;
-    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
-    background-size: 20px;
-  }
+.icon {
+  padding-left: 25px;
+  background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+  background-size: 20px;
+}

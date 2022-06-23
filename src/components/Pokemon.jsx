@@ -13,19 +13,16 @@ function Pokemon() {
         type: "normal"
     })
 
-
-    const { setOculto, createPokemons, getPokemons, consultPokemons, updatePokemon } = usePokemon();
-    console.log("hhh", consultPokemons)
-
+    const { setOculto, createPokemons, getPokemons, consultIdPokemons, updatePokemon, setConsultPokemons } = usePokemon();
 
     useEffect(() => {
-        if (consultPokemons) {
-            setPokemon({ ...pokemon, id: consultPokemons.id, name: consultPokemons.name, image: consultPokemons.image, attack: consultPokemons.attack, defense: consultPokemons.defense })
+        if (consultIdPokemons) {
+            setPokemon({ ...pokemon, id: consultIdPokemons.id, name: consultIdPokemons.name, image: consultIdPokemons.image, attack: consultIdPokemons.attack, defense: consultIdPokemons.defense })
+        }
+        return () => {
+            setConsultPokemons({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         }
     }, [])
-
-
-
 
     const handleName = (e) => {
         setPokemon({ ...pokemon, name: e })
@@ -42,29 +39,21 @@ function Pokemon() {
         setPokemon({ ...pokemon, defense: e })
     }
 
-
-
-
-
-
     const handleSave = async () => {
 
         if (Object.values(pokemon).includes('') || Object.values(pokemon).includes(0)) {
             alert("Todos los campos son obligatorios")
             return null;
         } // si el objeto viene vacio va a poner comillas simples
-        // addPokemon(pokemon)
-        if (consultPokemons.id === null) {
-            console.log(consultPokemons.id)
+        if (pokemon.id === null) {
             await createPokemons(pokemon)
             getPokemons()
             setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         } else {
-            await updatePokemon(consultPokemons.id, pokemon)
+            await updatePokemon(pokemon.id, pokemon)
             getPokemons()
             setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         }
-
         setOculto(true)
     }
     const handleCancel = () => {
@@ -75,7 +64,12 @@ function Pokemon() {
 
         <div className='contenedorPokemon' >
             <div className='titlePokemon'>
-                <span>Nuevo Pokemon</span>
+                <div style={{ display: pokemon.id != null ? "none" : "" }}>
+                    <span>Nuevo Pokemon</span>
+                </div>
+                <div style={{ display: pokemon.id === null ? "none" : "" }}>
+                    <span>Actualizar Pokemon</span>
+                </div>
             </div>
             <div className='fila1'>
                 <div className='namePokemon' >
@@ -96,13 +90,12 @@ function Pokemon() {
                 </div>
             </div>
             <div className='buttonPokemon'>
-                <div style={{display: consultPokemons.id === null ? "" : "none"}}>
-                <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                <div style={{ display: pokemon.id != null ? "none" : "" }}>
+                    <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                 </div>
-                <div style={{display: consultPokemons.id != null ? "" : "none"}}>
-                <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Actualizar</button>
+                <div style={{ display: pokemon.id === null ? "none" : "" }}>
+                    <button onClick={() => handleSave()} className='primaryButton' ><i class="fa fa-refresh" aria-hidden="true"></i> Actualizar</button>
                 </div>
-                {/* <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button> */}
                 <button className='primaryButton' onClick={() => handleCancel()}> <i className="fa fa-times" aria-hidden="true"></i> Cancelar</button>
 
             </div>

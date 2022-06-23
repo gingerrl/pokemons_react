@@ -1,13 +1,8 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import usePokemon from '../hooks/usePokemon';
-import Pokemon from './Pokemon';
 
-function Listado(props) {
-
-    const { searchPokemons, pokemons, setPokemons, deletePokemon, getPokemons,setOculto, oculto, updatePokemon ,consultPokemons,setConsultPokemons} = usePokemon();
-
-
+function Listado() {
+    const { searchPokemons, deletePokemon, getPokemons,setOculto, setConsultPokemons} = usePokemon();
 
     const handleDelete = async (id) => {
         await deletePokemon(id)
@@ -17,7 +12,6 @@ function Listado(props) {
     const handleEdit =  (list) => {
         setOculto(false)
         setConsultPokemons(list)
-        // createPokemons()
       }
     
     return (
@@ -47,17 +41,12 @@ function Listado(props) {
                                     <button className='primaryIcon' onClick={() => handleDelete(list.id)} > <i className="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </div>
                             </td>
-
-                        </tr>
-                        
+                        </tr>                        
                     ))}
-
                 </tbody>
-
             </table>
         </div>
-
     )
 }
 
-export default Listado
+export default Listado;
