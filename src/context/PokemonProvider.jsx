@@ -9,11 +9,14 @@ function PokemonProvider({ children }) {
 
   const [pokemons, setPokemons] = useState([])
 
+  const [consultPokemons, setConsultPokemons] = useState([])
+
   const [searchPokemons, setSearchPokemons] = useState([])
 
   useEffect(() => {
     setSearchPokemons(pokemons.filter(x => x.name.includes(search)))
   }, [search])
+
 
 
   useEffect(() => {
@@ -23,6 +26,10 @@ function PokemonProvider({ children }) {
   useEffect(() => {
     getPokemons()
   }, [])
+
+
+
+  
 
   async function getPokemons() {
     const response = await axios.get('https://bp-pokemons.herokuapp.com/?idAuthor=1');
@@ -37,7 +44,17 @@ function PokemonProvider({ children }) {
     const createList = await axios.post('https://bp-pokemons.herokuapp.com/?idAuthor=1', data);
     // setPokemons(createList.data)
   }
+  async function updatePokemon(id, data) {
+    const update = await axios.put(`https://bp-pokemons.herokuapp.com/${id}`, data)
+    // setPokemons(data.data)
 
+  }
+
+  async function consultPokemon(id) {
+    const consult = await axios.get(`https://bp-pokemons.herokuapp.com/${id}`)
+    setConsultPokemons(consult.data)
+  }
+   console.log("iii",consultPokemons)
   return (
     <PokemonContext.Provider value={{
       pokemons,
@@ -49,8 +66,11 @@ function PokemonProvider({ children }) {
       searchPokemons,
       deletePokemon,
       getPokemons,
-      createPokemons
-    }}
+      createPokemons,
+      consultPokemons,
+      updatePokemon,
+      setConsultPokemons
+        }}
 
     >{children}</PokemonContext.Provider>
   )
