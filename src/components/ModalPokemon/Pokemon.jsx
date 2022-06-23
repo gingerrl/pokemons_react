@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import usePokemon from '../hooks/usePokemon';
-
-function Pokemon() {
+import usePokemon from '../../hooks/usePokemon';
+import "../ModalPokemon/Pokemon.css";
+import {createPokemons,updatePokemon,getPokemons} from "../../Api/Api"
+function UpdateNewPokemon() {
     const [pokemon, setPokemon] = useState({
         id: null,
         name: "",
@@ -13,10 +14,10 @@ function Pokemon() {
         type: "normal"
     })
 
-    const { setOculto, createPokemons, getPokemons, consultIdPokemons, updatePokemon, setConsultPokemons } = usePokemon();
+    const { setOculto,  consultIdPokemons, setConsultPokemons ,setPokemons} = usePokemon();
 
     useEffect(() => {
-        if (consultIdPokemons) {
+        if (consultIdPokemons?.id) {
             setPokemon({ ...pokemon, id: consultIdPokemons.id, name: consultIdPokemons.name, image: consultIdPokemons.image, attack: consultIdPokemons.attack, defense: consultIdPokemons.defense })
         }
         return () => {
@@ -47,11 +48,13 @@ function Pokemon() {
         } // si el objeto viene vacio va a poner comillas simples
         if (pokemon.id === null) {
             await createPokemons(pokemon)
-            getPokemons()
+            const result=await getPokemons()
+            setPokemons(result)
             setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         } else {
             await updatePokemon(pokemon.id, pokemon)
-            getPokemons()
+           const result= await getPokemons()
+           setPokemons(result)
             setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         }
         setOculto(true)
@@ -61,7 +64,6 @@ function Pokemon() {
     }
 
     return (
-
         <div className='contenedorPokemon' >
             <div className='titlePokemon'>
                 <div style={{ display: pokemon.id != null ? "none" : "" }}>
@@ -94,7 +96,7 @@ function Pokemon() {
                     <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                 </div>
                 <div style={{ display: pokemon.id === null ? "none" : "" }}>
-                    <button onClick={() => handleSave()} className='primaryButton' ><i class="fa fa-refresh" aria-hidden="true"></i> Actualizar</button>
+                    <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-refresh" aria-hidden="true"></i> Actualizar</button>
                 </div>
                 <button className='primaryButton' onClick={() => handleCancel()}> <i className="fa fa-times" aria-hidden="true"></i> Cancelar</button>
 
@@ -103,4 +105,4 @@ function Pokemon() {
     )
 }
 
-export default Pokemon
+export default UpdateNewPokemon

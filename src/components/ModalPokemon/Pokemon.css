@@ -1,0 +1,74 @@
+.contenedorPokemon{
+  width: 100%;
+  border: 1px solid gray;
+  padding: 20px;
+}
+.titlePokemon{
+  margin-bottom: 25px;
+}
+.namePokemon{
+  margin-bottom: 25px;
+}
+.buttonPokemon{
+  margin: 30px 0px 0px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.primaryButton{
+    border: none;
+    padding: 10px;
+    color: var(--primaryText);
+    background-color: var(--primary);
+}
+
+.fila1{
+  display: flex;
+  justify-content: space-between;
+}
+.fila2{
+  justify-content: space-between;
+  display: flex;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      width: 100px;
+      height: 5px;
+      -webkit-appearance: none;
+      background-color: lightgray;
+      }
+      
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: blueviolet;
+      margin-top: -1px;
+      }
+      
+    input[type='range']::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 100%;
+      cursor: ew-resize;
+      border-radius: 50%;
+      background: rgb(0, 0, 0);
+      box-shadow: -80px 0 0 80px blueviolet;
+      }
+    }
+    /** FF*/
+    input[type="range"]::-moz-range-progress {
+      background-color: blueviolet ; 
+    }
+    input[type="range"]::-moz-range-track {  
+      background-color: lightgray;
+    }
+    /* IE*/
+    input[type="range"]::-ms-fill-lower {
+      background-color: blueviolet; 
+    }
+    input[type="range"]::-ms-fill-upper {  
+      background-color: lightgray;
+    }

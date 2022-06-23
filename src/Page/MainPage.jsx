@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Buscador from '../components/Buscador'
-import Listado from '../components/Listado';
-import Pokemon from '../components/Pokemon';
-import '../components/listado.css'
+import Search from '../components/Search/Search'
+import ListPokemon from '../components/ListPokemon/ListPokemon';
+import Pokemon from '../components/ModalPokemon/Pokemon';
+import './MainPage.css'
 import usePokemon from '../hooks/usePokemon';
-
-function Inicio() {
-  const { oculto, setOculto, createPokemons } = usePokemon()
+import {createPokemons} from "../Api/Api"
+function MainPage() {
+  const { oculto, setOculto } = usePokemon()
 
   const handleNew = async () => {
     setOculto(false)
-    createPokemons()
+    createPokemons();
+    
   }
 
   return (
@@ -19,11 +20,11 @@ function Inicio() {
         <span>Listado de Pokemon</span>
       </div>
       <div className='item-buscador'>
-        <Buscador />
+        <Search />
         <button className='primaryButton' onClick={() => handleNew()} > <i className="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
       </div>
       <div className='item-tabla'>
-        <Listado />
+        <ListPokemon />
       </div>
       <div className='item-info'>
         {!oculto && (<Pokemon />)}
@@ -32,4 +33,4 @@ function Inicio() {
   )
 }
 
-export default Inicio
+export default MainPage

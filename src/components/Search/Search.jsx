@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 // import PokemonContext from '../context/PokemonProvider';
-import usePokemon from '../hooks/usePokemon';
-
-function Buscador() {
+import usePokemon from '../../hooks/usePokemon';
+import "../Search/Search.css"
+function SearchPokemon() {
   const { search, setSearch } = usePokemon();
 
   const handleSearch = (e) => {
@@ -15,4 +15,4 @@ function Buscador() {
   );
 }
 
-export default Buscador
+export default SearchPokemon

@@ -1,0 +1,11 @@
+.listContainer{
+  width: 100%;
+  margin: 20px 0px 20px;
+}
+.tablaList{
+  width: 100%;
+}
+.td{
+    border: 1px solid black;
+  }
+  

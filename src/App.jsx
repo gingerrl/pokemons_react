@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { PokemonProvider } from './context/PokemonProvider'
-import Inicio from './paginas/Inicio'
+import MainPage from './Page/MainPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App" >
       <PokemonProvider>
-        <Inicio />
+        <MainPage />
       </PokemonProvider>
     </div>
   )
