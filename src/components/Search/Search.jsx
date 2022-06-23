@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-// import PokemonContext from '../context/PokemonProvider';
-import usePokemon from '../../hooks/usePokemon';
+import usePokemon from '../../Hooks/usePokemon';
 import "../Search/Search.css"
 function SearchPokemon() {
   const { search, setSearch } = usePokemon();

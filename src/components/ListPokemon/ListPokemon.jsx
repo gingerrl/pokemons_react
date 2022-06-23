@@ -1,5 +1,5 @@
 import React from 'react';
-import usePokemon from '../../hooks/usePokemon';
+import usePokemon from '../../Hooks/usePokemon';
 import "../ListPokemon/ListPokemon.css"
 import {getPokemons,deletePokemon} from "../../Api/Api"
 function ListPokemon() {
@@ -17,7 +17,6 @@ function ListPokemon() {
     }
 
     return (
-
         <div className='listContainer'>
             <table className='tablaList'>
                 <thead>

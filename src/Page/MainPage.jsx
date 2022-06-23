@@ -3,7 +3,7 @@ import Search from '../components/Search/Search'
 import ListPokemon from '../components/ListPokemon/ListPokemon';
 import Pokemon from '../components/ModalPokemon/Pokemon';
 import './MainPage.css'
-import usePokemon from '../hooks/usePokemon';
+import usePokemon from '../Hooks/usePokemon';
 import {createPokemons} from "../Api/Api"
 function MainPage() {
   const { oculto, setOculto } = usePokemon()

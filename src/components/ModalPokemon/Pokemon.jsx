@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import usePokemon from '../../hooks/usePokemon';
+import usePokemon from '../../Hooks/usePokemon';
 import "../ModalPokemon/Pokemon.css";
-import {createPokemons,updatePokemon,getPokemons} from "../../Api/Api"
+import { createPokemons, updatePokemon, getPokemons } from "../../Api/Api"
 function UpdateNewPokemon() {
     const [pokemon, setPokemon] = useState({
         id: null,
@@ -14,7 +14,7 @@ function UpdateNewPokemon() {
         type: "normal"
     })
 
-    const { setOculto,  consultIdPokemons, setConsultPokemons ,setPokemons} = usePokemon();
+    const { setOculto, consultIdPokemons, setConsultPokemons, setPokemons } = usePokemon();
 
     useEffect(() => {
         if (consultIdPokemons?.id) {
@@ -45,16 +45,16 @@ function UpdateNewPokemon() {
         if (Object.values(pokemon).includes('') || Object.values(pokemon).includes(0)) {
             alert("Todos los campos son obligatorios")
             return null;
-        } // si el objeto viene vacio va a poner comillas simples
+        }
         if (pokemon.id === null) {
             await createPokemons(pokemon)
-            const result=await getPokemons()
+            const result = await getPokemons()
             setPokemons(result)
             setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         } else {
             await updatePokemon(pokemon.id, pokemon)
-           const result= await getPokemons()
-           setPokemons(result)
+            const result = await getPokemons()
+            setPokemons(result)
             setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
         }
         setOculto(true)
@@ -64,8 +64,8 @@ function UpdateNewPokemon() {
     }
 
     return (
-        <div className='contenedorPokemon' >
-            <div className='titlePokemon'>
+        <div className='blockPokemon' >
+            <div className='blockElement1Pokemon'>
                 <div style={{ display: pokemon.id != null ? "none" : "" }}>
                     <span>Nuevo Pokemon</span>
                 </div>
@@ -73,7 +73,7 @@ function UpdateNewPokemon() {
                     <span>Actualizar Pokemon</span>
                 </div>
             </div>
-            <div className='fila1'>
+            <div className='blockElement2'>
                 <div className='namePokemon' >
                     Nombre: <input value={pokemon.name} onChange={(e) => handleName(e.target.value)} />
                 </div>
@@ -83,7 +83,7 @@ function UpdateNewPokemon() {
                 </div>
             </div>
 
-            <div className='fila2'>
+            <div className='blockElement3'>
                 <div>
                     Imagen: <input placeholder='url' value={pokemon.image} onChange={(e) => handleImage(e.target.value)} />
                 </div>
@@ -91,7 +91,7 @@ function UpdateNewPokemon() {
                     Defensa: 0<input value={pokemon.defense} onChange={(e) => handleDefense(e.target.value)} type="range" min="0" max="100" />100
                 </div>
             </div>
-            <div className='buttonPokemon'>
+            <div className='blockElement4Pokemon'>
                 <div style={{ display: pokemon.id != null ? "none" : "" }}>
                     <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                 </div>

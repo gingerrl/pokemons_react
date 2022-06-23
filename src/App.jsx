@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { PokemonProvider } from './context/PokemonProvider'
+import { PokemonProvider } from './Context/PokemonProvider'
 import MainPage from './Page/MainPage'
 
 function App() {
