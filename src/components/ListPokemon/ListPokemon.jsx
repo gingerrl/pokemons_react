@@ -1,12 +1,18 @@
 import React from 'react';
 import usePokemon from '../../Hooks/usePokemon';
 import "../ListPokemon/ListPokemon.css"
-import {getPokemons,deletePokemon} from "../../Api/Api"
+import { getPokemons, deletePokemon } from "../../Api/Api"
 function ListPokemon() {
-    const { searchPokemons,  setOculto, setConsultPokemons, setPokemons } = usePokemon();
+    const { searchPokemons, setOculto, setConsultPokemons, setPokemons } = usePokemon();
 
     const handleDelete = async (id) => {
-        await deletePokemon(id)
+        let text
+        if (confirm("Desea eliminar el elemento seleccionado") == true) {
+            await deletePokemon(id)
+            text = "You pressed OK!";
+        } else {
+            text = "You canceled!";
+        }
         const result = await getPokemons()
         setPokemons(result)
     }

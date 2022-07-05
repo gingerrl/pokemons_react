@@ -23,6 +23,13 @@
     background-color: var(--primary);
 }
 
+.buttonDisabled{
+  border: none;
+  padding: 10px;
+  color: var(--primaryText);
+  background-color: gray;
+}
+
 .blockElement2{
   display: flex;
   justify-content: space-between;

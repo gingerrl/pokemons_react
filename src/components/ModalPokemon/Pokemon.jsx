@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import usePokemon from '../../Hooks/usePokemon';
 import "../ModalPokemon/Pokemon.css";
 import { createPokemons, updatePokemon, getPokemons } from "../../Api/Api"
+import * as helperGlobal from '../../helper/global'
 function UpdateNewPokemon() {
     const [pokemon, setPokemon] = useState({
         id: null,
@@ -41,28 +42,30 @@ function UpdateNewPokemon() {
     }
 
     const handleSave = async () => {
-
         if (Object.values(pokemon).includes('') || Object.values(pokemon).includes(0)) {
             alert("Todos los campos son obligatorios")
             return null;
         }
-        if (pokemon.id === null) {
-            await createPokemons(pokemon)
-            const result = await getPokemons()
-            setPokemons(result)
-            setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
+        if (helperGlobal.validateURL(pokemon.image)) {
+            if (pokemon.id === null) {
+                await createPokemons(pokemon)
+                const result = await getPokemons()
+                setPokemons(result)
+                setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
+            } else {
+                await updatePokemon(pokemon.id, pokemon)
+                const result = await getPokemons()
+                setPokemons(result)
+                setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
+            }
         } else {
-            await updatePokemon(pokemon.id, pokemon)
-            const result = await getPokemons()
-            setPokemons(result)
-            setPokemon({ ...pokemon, id: null, name: "", image: "", attack: 0, defense: 0 })
+            alert("Escriba una URL valida")
         }
         setOculto(true)
     }
     const handleCancel = () => {
         setOculto(true)
     }
-
     return (
         <div className='blockPokemon' >
             <div className='blockElement1Pokemon'>
@@ -85,7 +88,7 @@ function UpdateNewPokemon() {
 
             <div className='blockElement3'>
                 <div>
-                    Imagen: <input placeholder='url' value={pokemon.image} onChange={(e) => handleImage(e.target.value)} />
+                    Imagen: <input type="url" placeholder='url' value={pokemon.image} onChange={(e) => handleImage(e.target.value)} />
                 </div>
                 <div className='rangeInput'>
                     Defensa: 0<input value={pokemon.defense} onChange={(e) => handleDefense(e.target.value)} type="range" min="0" max="100" />100
@@ -93,7 +96,7 @@ function UpdateNewPokemon() {
             </div>
             <div className='blockElement4Pokemon'>
                 <div style={{ display: pokemon.id != null ? "none" : "" }}>
-                    <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                    <button disabled={pokemon.name === '' || pokemon.image === '' || pokemon.attack == 0 || pokemon.defense == 0} onClick={() => handleSave()} className={pokemon.name === '' || pokemon.image === '' || pokemon.attack == 0 || pokemon.defense == 0 ? "buttonDisabled" : "primaryButton"} ><i className="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                 </div>
                 <div style={{ display: pokemon.id === null ? "none" : "" }}>
                     <button onClick={() => handleSave()} className='primaryButton' ><i className="fa fa-refresh" aria-hidden="true"></i> Actualizar</button>
